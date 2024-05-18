@@ -1,0 +1,181 @@
+<html>
+<head>
+   
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("usname").addEventListener("input", validateUsername);
+            document.getElementById("password").addEventListener("input", validatePassword);
+            document.getElementById("conpassword").addEventListener("input", validateConfirmPassword);
+        };
+    
+        function validateUsername() {
+            var username = document.getElementById("usname").value;
+            var errorSpan = document.getElementById("usnameError");
+    
+            if (username.length < 4) {
+                errorSpan.innerHTML = "Username must be at least 4 characters long.";
+                return false;
+            } else {
+                errorSpan.innerHTML = "";
+                return true;
+            }
+        }
+    
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var errorSpan = document.getElementById("passwordError");
+    
+            if (password.length < 8) {
+                errorSpan.innerHTML = "Password must be at least 8 characters long.";
+                return false;
+            } else {
+                errorSpan.innerHTML = "";
+                return true;
+            }
+        }
+    
+        function validateConfirmPassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("conpassword").value;
+            var errorSpan = document.getElementById("conpasswordError");
+    
+            if (password !== confirmPassword) {
+                errorSpan.innerHTML = "Passwords must match.";
+                return false;
+            } else {
+                errorSpan.innerHTML = "";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body >
+    <table border="0">
+        <tr >
+            <th  align="center" colspan="2">
+                <a href="index.php"><img src="logo.jpg" height="180"></a>
+
+                <p  align="right">
+                    <a href="Login.php" >Login</a>&nbsp;&nbsp;&nbsp;                </p>
+            </th>
+        </tr>
+
+        <tr >
+            <td align="center">
+                <form name="registrationForm" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" onsubmit="return validateForm()" novalidate autocomplete="off">
+
+                
+                    <fieldset >
+                    <legend ><b>REGISTRATION</b></legend>
+                    <table border="0">
+                        <tr >
+                            <td>Name</td>
+                            <td> : <input type="text" name="funame" value="<?php echo isset($_SESSION['funame']) ? htmlspecialchars($_SESSION['funame']) : ''; ?>"/><span ><?php echo $funameError; ?></span></td>
+                        </tr>
+
+                        <tr >
+                            <td>Email</td>
+                            <td>:<input type="email" name="email" placeholder="hint:sample@example.com" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>" /> <span ><?php echo $emailError ?><b><b></span></td>
+                        </tr>
+
+                        <tr >
+                            <td><label for="phone">Phone/Mobile number:</label></td>
+                            <td> : <input type="tel" id="phone" name="phone" placeholder="+01XXXXXXXXX" value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone']) : ''; ?>" ><?php echo $phoneError; ?></td>
+                        </tr>
+
+                        <tr >
+                            <td>Gender </td>
+                            <td> : 
+                            
+    <input type="radio" name="gender" value="male" <?php echo (isset($_SESSION['selectedGender']) && $_SESSION['selectedGender'] === 'male') ? 'checked' : ''; ?>> Male
+    <input type="radio" name="gender" value="female" <?php echo (isset($_SESSION['selectedGender']) && $_SESSION['selectedGender'] === 'female') ? 'checked' : ''; ?>> Female
+    
+    <span ><?php echo $genderError; ?></span>
+                               
+                            </td>
+                        </tr>
+
+                        <tr >
+                            <td>Date of Birth</td>
+                            <td> : <input type="date" name="dob" value=" " /><br />
+                        </tr>
+                        <tr>
+                           <td> <label for="Religion">Religion </label>
+                          <td> : <select name="religion" id="religion">
+                            <option value="Islam" <?php echo (isset($_SESSION['religion']) && $_SESSION['religion'] === 'Islam') ? 'selected' : ''; ?>>Islam</option>
+                           <option value="Hindu" <?php echo (isset($_SESSION['religion']) && $_SESSION['religion'] === 'Hindu') ? 'selected' : ''; ?>>Hindu</option></td>
+                          </select></td>
+                            </tr>
+                            <tr> <td><label for="bloodgroup">Blood Group</label></td>
+                              <td>:<select name="bloodgroup" id="bloodgroup">
+                                <option value="A+" <?php echo (isset($_SESSION['bloodgroup']) && $_SESSION['bloodgroup'] === 'A+') ? 'selected' : ''; ?>>A+</option>
+                                <option value="O+" <?php echo (isset($_SESSION['bloodgroup']) && $_SESSION['bloodgroup'] === 'O+') ? 'selected' : ''; ?>>O+</option>
+                                <option value="O-" <?php echo (isset($_SESSION['bloodgroup']) && $_SESSION['bloodgroup'] === 'O-') ? 'selected' : ''; ?>>O-</option>
+                                  </select><br></td>
+                             </tr>
+
+                    
+                             
+
+
+                        <tr >
+                            <td>Username</td>
+                          <td>  <input type="text" id="usname" name="usname" value="<?php echo isset($_SESSION['usname']) ? htmlspecialchars($_SESSION['usname']) : ''; ?>" /><span ><?php echo $usnameError; ?></span><span id="usnameError" class="error"></span></td>
+                           </tr>
+
+                        <tr >
+                            <td>Password</td>
+                            <td> : <input type="text" id="password" name="password" value="<?php echo isset($_SESSION['password']) ? htmlspecialchars($_SESSION['password']) : ''; ?>" /><span ><?php echo $passwordError; ?></span> <span id="passwordError" class="error"></span></td>
+                            </tr>
+
+                        <tr >
+                            <td>Confirm Password</td>
+                            <td> : <input type="text" id="conpassword" name="conpassword" value="<?php echo isset($_SESSION['conpassword']) ? htmlspecialchars($_SESSION['conpassword']) : ''; ?>" /><span ><?php echo $conpasswordError; ?></span><span id="conpasswordError" class="error"></span></td>
+                              </tr>
+                        <tr>
+                            <td>  <p>  <fieldset >
+                              <legend><b>Present Address:</b></legend>
+           <label for="division"></label>
+            <select name="division" id="division">
+            <option value="Rajshahi" <?php echo (isset($_SESSION['division']) && $_SESSION['division'] === 'Rajshahi') ? 'selected' : ''; ?>>Rajshahi</option>
+                <option value="Dhaka" <?php echo (isset($_SESSION['division']) && $_SESSION['division'] === 'Dhaka') ? 'selected' : ''; ?>>Dhaka</option>
+                <option value="Sylhet" <?php echo (isset($_SESSION['division']) && $_SESSION['division'] === 'Sylhet') ? 'selected' : ''; ?>>Sylhet</option>
+              
+            </select>
+            <label for="Country"></label>
+            <select name="Country" id="Country">
+                        <option value="Bangladesh" <?php echo (isset($_SESSION['country']) && $_SESSION['country'] === 'Bangladesh') ? 'selected' : ''; ?>>Bangladesh</option>
+                        <option value="India" <?php echo (isset($_SESSION['country']) && $_SESSION['country'] === 'India') ? 'selected' : ''; ?>>India</option>
+            </select><br>
+                                                 <textarea rows="2" cols="5" name="address" placeholder="Road/Stree/city.."><?php echo isset($_SESSION['address']) ? htmlspecialchars($_SESSION['address']) : ''; ?></textarea><span ><?php echo $addressError; ?></span><br>
+                                                 <input type="text" name="postcode"value="<?php echo isset($_SESSION['postcode']) ? htmlspecialchars($_SESSION['postcode']) : ''; ?>"  placeholder="post code"</p>
+                                                 <span ><?php echo $postcodeError; ?></span>
+                           </td></tr>
+
+
+                        <tr >
+                            <td colspan="2" align="center"> <input type="checkbox"  required/> <b>Agree to Terms & Policy</b></td>
+                        </tr>
+                        <tr><td colspan="2"><br></td></tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <input type="submit" name="register" value="Register" >
+                                <input type="reset" name="reset" value="Reset" >
+                            </td>
+                        </tr>
+                    </table>
+                    </fieldset>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" width="1920" height="50" >
+                <h4 align="center">Copyright ⓒ 2023</h4>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

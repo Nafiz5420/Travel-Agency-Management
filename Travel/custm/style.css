@@ -1,0 +1,112 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(156, 74, 238, 0.563);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the form container */
+.container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Style the form inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style radio inputs */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Style the submit button */
+button[type="submit"],
+input[type="submit"] {
+    background-color: rgb(76, 83, 175);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style the legend */
+legend {
+    font-weight: bold;
+}
+
+/* Style the error messages */
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+/* Style the form labels */
+label {
+    font-weight: bold;
+}
+
+/* Cool CSS additions */
+
+/* Apply a cool gradient background to the form container */
+.container {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+}
+
+/* Add a slight rotation effect to the form container */
+.container {
+    transform: rotate(-2deg);
+}
+
+/* Add a subtle box shadow to the form container */
+.container {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a border animation to form inputs on focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    border-color: #ff5f6d;
+    transition: border-color 0.5s ease;
+}
